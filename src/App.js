@@ -48,6 +48,8 @@ import { Route, Routes, BrowserRouter, HashRouter as Router } from "react-router
 import { generateToken,messaging } from './firebase_config';
 import { onMessage } from 'firebase/messaging';
 
+
+
 function App(props) {
   
 const [cookies, setCookie,removeCookie] = useCookies(['name','all']);
@@ -94,8 +96,13 @@ generateToken().then((resp)=>setTok(resp))
   })
 },[])
 
+
+
+
   return (
 <div>
+
+
 
 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical:'bottom',horizontal:'right'}} >
   <Alert severity="success" variant="filled"sx={{ width: '100%' }} onClose={handleClose}>
@@ -104,6 +111,8 @@ generateToken().then((resp)=>setTok(resp))
 </Snackbar>
 
 <Grid container>
+
+  
 
        <AppBar position="fixed" sx={{zIndex:9,backgroundColor:'#193B68',display:cookies.name?'block':'none'}}>
         <Toolbar>
@@ -119,6 +128,7 @@ generateToken().then((resp)=>setTok(resp))
           <Typography variant="h6" component="div" sx={{ flexGrow: 1,color:'#dde8f8' }}>
             3 Dots Design
           </Typography>
+
           <Button color="inherit"
           id="basic-button"
           aria-controls={open2 ? 'basic-menu' : undefined}

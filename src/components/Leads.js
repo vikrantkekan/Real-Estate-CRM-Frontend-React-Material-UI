@@ -67,8 +67,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-
 function Leads(){
 
   let { pid } = useParams();
@@ -136,7 +134,6 @@ let url=`${process.env.REACT_APP_API_BASE_URL}/Allleads.php?pid=${pid}&project_a
   }
     )
   .catch((err3)=>console.log(err3))
-
 
 }
 
