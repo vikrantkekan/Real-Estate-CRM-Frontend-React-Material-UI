@@ -32,6 +32,8 @@ import Instagram from './components/Campaigns/Instagram'
 import Messages from './components/Campaigns/Messages'
 import WebsiteCampaigns from './components/Connect/WebsiteCampaigns'
 import EmailTemplates from './components/Emails/EmailTemplates';
+import Auth from './components/google/Auth';
+
 
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -185,6 +187,8 @@ generateToken().then((resp)=>setTok(resp))
           <Route path="Messages" element={<Messages />} />
           <Route path="WebsiteCampaigns" element={<WebsiteCampaigns />} />
           <Route path="EmailTemplates" element={<EmailTemplates />} />
+
+          <Route path="/google/auth/callback" element={<Auth />} />
         </Route>
 
         </Routes>

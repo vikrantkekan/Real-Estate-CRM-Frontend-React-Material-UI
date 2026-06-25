@@ -51,7 +51,7 @@ function Instagram(props){
             
             let instaid=data2.instagram_business_account.id;
             
-//console.log('instaid',instaid)
+          console.log('instaid',instaid)
 
             let url4='https://graph.facebook.com/v19.0/'+instaid+'?fields=username&access_token='+token
             fetch(url4).then((response4)=>response4.json()).then((data4)=>{
@@ -82,6 +82,7 @@ function Instagram(props){
 
 let mediacard=conns.business_discovery.media.data.map((itm)=><InstaCard data={itm} token={token2} />)
 
+console.log('conns',conns)
     return(
 
         <Box sx={{pt:10}}>
@@ -126,6 +127,45 @@ let mediacard=conns.business_discovery.media.data.map((itm)=><InstaCard data={it
 
   </Grid>
 
+<Grid item xs={12} sx={{borderBottom:'1px solid #eee',pb:2}}>
+  <Grid item xs={12} sx={{border:'1px solid #eee',p:1,m:2,borderRadius:'5px'}}>
+  <h3 style={{paddingLeft:'15px',color:'rgb(68, 94, 130)'}}>Profile Insights</h3>
+
+      <div style={{padding:'15px',color:'#2b2b2b',display:'flex',justifyContent:'start',alignItems:'center',flexWrap:'wrap'}}>
+        
+        <div style={{width:'100%',border:'1px solid #eee',padding:'15px',margin:'2px',borderRadius:'5px',textAlign:'center'}}>
+        <p style={{color:'rgb(68, 94, 130)',fontSize:'21px'}}>1,234</p>
+        <p style={{fontSize:'14px'}}  >Accounts reached</p>
+        </div>
+
+        <div style={{width:'100%',border:'1px solid #eee',padding:'15px',margin:'2px',borderRadius:'5px',textAlign:'center'}}>
+        <p style={{color:'rgb(68, 94, 130)',fontSize:'21px'}}>1,234</p>
+        <p style={{fontSize:'14px'}}>Profile visits</p>
+        </div>
+
+         <div style={{width:'100%',border:'1px solid #eee',padding:'15px',margin:'2px',borderRadius:'5px',textAlign:'center'}}>
+        <p style={{color:'rgb(68, 94, 130)',fontSize:'21px'}}>1,234</p>
+         <p style={{fontSize:'14px'}}>Accounts engaged</p>
+        </div>
+
+         <div style={{width:'100%',border:'1px solid #eee',padding:'15px',margin:'2px',borderRadius:'5px',textAlign:'center'}}>
+        <p style={{color:'rgb(68, 94, 130)',fontSize:'21px'}} >1,234</p>
+        <p style={{fontSize:'14px'}}>Content interactions</p>
+        </div>
+
+         <div style={{width:'100%',border:'1px solid #eee',padding:'15px',margin:'2px',borderRadius:'5px',textAlign:'center'}}>
+        <p style={{color:'rgb(68, 94, 130)',fontSize:'21px'}} >1,234</p>
+         <p style={{fontSize:'14px'}}>Likes</p>
+        </div>
+
+           <div style={{width:'100%',border:'1px solid #eee',padding:'15px',margin:'2px',borderRadius:'5px',textAlign:'center'}}>
+        <p style={{color:'rgb(68, 94, 130)',fontSize:'21px'}} >1,234</p>
+        <p style={{fontSize:'14px'}}>Shares</p>
+        </div>
+
+      </div>
+  </Grid>
+</Grid>
 
 {mediacard}
 

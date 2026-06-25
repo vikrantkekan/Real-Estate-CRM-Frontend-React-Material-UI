@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Callback</title>
+</head>
+<body>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    const code = params.get("code");
+    const error = params.get("error");
+
+    if (error) {
+        window.location.href =
+            "/#/google/auth/callback?error=" +
+            encodeURIComponent(error);
+    }
+    else {
+        window.location.href =
+            "/#/google/auth/callback?code=" +
+            encodeURIComponent(code);
+    }
+</script>
+
+</body>
+</html>

@@ -45,7 +45,7 @@ function InstaCard(props){
       let metric='reach,saved,likes,comments,shares,total_interactions';
       let url='https://graph.facebook.com/v19.0/'+props.data.id+'/insights?metric='+metric+'&access_token='+props.token
       fetch(url).then((response)=>response.json()).then((data)=>{
-        console.log('Video',data)
+        //console.log('Video',data)
         setStatdata(data.data)
        
       }).catch((err)=>console.log(err))
@@ -63,7 +63,7 @@ let metric='reach,saved,likes,comments,shares,total_interactions';
 
    },[1])
 
-   console.log(statdata);
+  // console.log(statdata);
    let content=statdata.map((itm)=><Grid item xs={6} sx={{padding:'2px'}}><span>{itm.title} : {itm.values[0].value}</span></Grid> )
 
 return(
