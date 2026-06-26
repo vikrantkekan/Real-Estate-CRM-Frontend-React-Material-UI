@@ -57,17 +57,19 @@ setCookie('name', data[0]['fullname'], { path: '/' });
 }
 
 return(
-<Box sx={{borderRadius:'15px',width:'100%',backgroundImage:'url(https://www.3dotsdesign.in/demo/demo/public/social-media.jpg)',backgroundSize:'cover'}}>
+<Box sx={{borderRadius:'15px',width:'100%',height:'100vh',backgroundImage:'url(https://www.3dotsdesign.in/demo/demo/public/main-bg.png)',backgroundSize:'cover'}}>
 
 <Grid container>
 
+<Grid item xs={4} sx={{}}></Grid>
+
 <Grid item xs={4} sx={{}}>
 
-<Paper sx={{height:'100vh'}}>
+<Paper sx={{height:'auto',width:'100%',marginTop:'20vh',borderRadius:'15px'}} elevation={3}>
 
 <div style={{padding:'2vw'}}>
 <center>
-<img src={`${process.env.REACT_APP_STATIC_BASE_URL}/public/3dots.png`} style={{padding:1}} />
+<img src={`${process.env.REACT_APP_STATIC_BASE_URL}/public/intgr8-dark.png`} style={{padding:1,width:'200px'}} />
 </center>
 <form onSubmit={(e)=>on_submit(e)}>
 <FormControl sx={{width:'100%',p:2}}>
@@ -81,7 +83,7 @@ return(
 </FormControl>
 
 <FormControl sx={{width:'100%',p:2}}>
-<TextField id="outlined-basic" label="Password" variant="outlined"  name="password" InputProps={{
+<TextField id="outlined-basic" label="Password" variant="outlined" type="password"  name="password" InputProps={{
           startAdornment: (
             <InputAdornment position="start">
               <HttpsIcon />

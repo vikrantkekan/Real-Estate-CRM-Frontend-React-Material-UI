@@ -235,13 +235,25 @@ Projects
 
         <Link to="/ConnectedAccount">
            <ListItemButton sx={{ pl: 4 }}>
-            <ListItemIcon><CircleIcon sx={{fontSize:7}}/></ListItemIcon><ListItemText primary="Account" />
+            <ListItemIcon><CircleIcon sx={{fontSize:7}}/></ListItemIcon><ListItemText primary="Meta Account" />
+          </ListItemButton>
+             </Link>
+
+             <Link to="/google/auth/callback">
+           <ListItemButton sx={{ pl: 4 }}>
+            <ListItemIcon><CircleIcon sx={{fontSize:7}}/></ListItemIcon><ListItemText primary="Google Account" />
+          </ListItemButton>
+             </Link>
+
+             <Link to="/google/property">
+           <ListItemButton sx={{ pl: 4 }}>
+            <ListItemIcon><CircleIcon sx={{fontSize:7}}/></ListItemIcon><ListItemText primary="Google Property" />
           </ListItemButton>
              </Link>
 
         <Link to="/Connections">
            <ListItemButton sx={{ pl: 4 }}>
-            <ListItemIcon><CircleIcon sx={{fontSize:7}}/></ListItemIcon><ListItemText primary="Pages" />
+            <ListItemIcon><CircleIcon sx={{fontSize:7}}/></ListItemIcon><ListItemText primary="Meta Pages" />
           </ListItemButton>
              </Link>
     

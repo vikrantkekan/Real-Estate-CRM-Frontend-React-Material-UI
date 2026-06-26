@@ -49,6 +49,7 @@ import { Route, Routes, BrowserRouter, HashRouter as Router } from "react-router
 
 import { generateToken,messaging } from './firebase_config';
 import { onMessage } from 'firebase/messaging';
+import Properties from './components/google/Properties';
 
 
 
@@ -127,9 +128,9 @@ generateToken().then((resp)=>setTok(resp))
           >
             
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1,color:'#dde8f8' }}>
-            3 Dots Design
-          </Typography>
+          
+            <img src={`${process.env.REACT_APP_STATIC_BASE_URL}/public/intgr8-white.png`} style={{width:'120px',marginLeft:'10px'}} />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1,color:'#dde8f8' }}></Typography>
 
           <Button color="inherit"
           id="basic-button"
@@ -189,6 +190,7 @@ generateToken().then((resp)=>setTok(resp))
           <Route path="EmailTemplates" element={<EmailTemplates />} />
 
           <Route path="/google/auth/callback" element={<Auth />} />
+          <Route path="/google/property" element={<Properties />} />
         </Route>
 
         </Routes>

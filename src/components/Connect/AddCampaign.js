@@ -434,7 +434,7 @@ return(
           variant="filled"
           sx={{ width: '100%' }}
         >
-          New Tag Added Successfuly !
+          Added Successfuly !
         </Alert>
       </Snackbar>
  
