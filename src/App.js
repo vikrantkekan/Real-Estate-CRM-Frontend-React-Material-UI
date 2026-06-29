@@ -50,6 +50,7 @@ import { Route, Routes, BrowserRouter, HashRouter as Router } from "react-router
 import { generateToken,messaging } from './firebase_config';
 import { onMessage } from 'firebase/messaging';
 import Properties from './components/google/Properties';
+import GoogleDashboard from './components/google/Dashboard';
 
 
 
@@ -191,6 +192,9 @@ generateToken().then((resp)=>setTok(resp))
 
           <Route path="/google/auth/callback" element={<Auth />} />
           <Route path="/google/property" element={<Properties />} />
+
+          <Route path="/google/dashboard" element={<GoogleDashboard />} />
+
         </Route>
 
         </Routes>

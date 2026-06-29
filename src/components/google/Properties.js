@@ -31,6 +31,10 @@ import Select from '@mui/material/Select'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
+
 export default function Properties() {
 
     const [cookies, setCookie,removeCookie] = useCookies(['name','all']);
@@ -48,12 +52,17 @@ export default function Properties() {
 
 const [selaccount,setselAccount]=useState(null)
 const [selprop,setSelprop]=useState(null)
+const [selcon,setSelcon]=useState(null)
 
 const [property,setProperty]=useState([])
+const [sconsole,setSconsole]=useState([])
 
 const[selanalytic,setAnalytic]=useState(null);
 
 const[analyticacclist,setAnalyticacclist]=useState([]);
+
+const [snack,setSnack]=useState(0);
+
 
     function handle_add_modal(v){
     if(cookies.all.uroles[0].meta_campaign.indexOf("add_campaign")!=-1){
@@ -148,10 +157,23 @@ async function handleAnalyticsChange(event) {
   );
 
   const data = await res.json();
-
-  //console.log(data);
-
   setProperty(data.properties || []);
+
+
+/*for search console */
+
+  const rescons = await fetch(
+    `https://www.googleapis.com/webmasters/v3/sites`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  const datacon = await rescons.json();
+  setSconsole(datacon.siteEntry || []);
+
 }
 
 
@@ -173,6 +195,7 @@ async function saveProperty(e) {
     analytics_account_name: selectedAnalytics.displayName,
     property_id: selectedProperty.name,
     property_name: selectedProperty.displayName,
+    domain: selcon,
     clie: cookies.all.clie,
     uid: cookies.all.uid,
   };
@@ -194,6 +217,12 @@ async function saveProperty(e) {
 
 console.log("Status:", response.status);
 console.log("Response:", data);
+
+if(data==200){
+  setSnack(1)
+}else{
+  alert("Error adding property")
+}
 
 }
 
@@ -229,6 +258,9 @@ const analyticsAccountList = analyticacclist.map((item) => (
 ));
 
 const propertylist = property.map((item) => (<MenuItem key={item.name} value={item.name}>{item.displayName} {item.name}</MenuItem>));
+
+const sclist = sconsole.map((item) => (<MenuItem key={item.siteUrl} value={item.siteUrl}>{item.siteUrl} {item.permissionLevel}</MenuItem>));
+
 
 function add_property(){
     fetch(`${process.env.REACT_APP_API_BASE_URL}/google/add-google-token.php`, {
@@ -268,9 +300,10 @@ return <TableRow>
 
 <TableCell align="left" sx={{color:'#575757'}}>
 {item.property_name}
-
 </TableCell>
-
+<TableCell align="left" sx={{color:'#575757'}}>
+{item.domain}
+</TableCell>
 
 
 <TableCell align="left" sx={{color:'#575757'}}>
@@ -303,6 +336,7 @@ Connect New Property
 <TableCell align="left" sx={{backgroundColor:'#f4f6f8', color:'#637381'}}>Platform</TableCell>
 <TableCell align="left" sx={{backgroundColor:'#f4f6f8', color:'#637381'}}>Account name</TableCell>
 <TableCell align="left" sx={{backgroundColor:'#f4f6f8', color:'#637381'}}>Property name</TableCell>
+<TableCell align="left" sx={{backgroundColor:'#f4f6f8', color:'#637381'}}>Domain name</TableCell>
 <TableCell align="left" sx={{backgroundColor:'#f4f6f8', color:'#637381'}}>On Date</TableCell>
 
 </TableRow>
@@ -346,9 +380,9 @@ onRowsPerPageChange={(e)=>handlerowschange(e)}
 
 <Grid item xs={12}>
 <FormControl sx={{p:2,width:'100%'}} >
-  <InputLabel id="demo-simple-select-label" sx={{p:2}}>Select Google Account</InputLabel>
+  <InputLabel id="demo-simple-select-label-google" sx={{p:2}}>Select Google Account</InputLabel>
   <Select
-    labelId="demo-simple-select-label"
+    labelId="demo-simple-select-label-google"
     id="demo-simple-select"
     value={selaccount}
     label="Select Google Account"
@@ -362,9 +396,9 @@ onRowsPerPageChange={(e)=>handlerowschange(e)}
 
 <Grid item xs={12}>
 <FormControl sx={{p:2,width:'100%'}} >
-  <InputLabel id="demo-simple-select-label" sx={{p:2}}>Select Analytics Account</InputLabel>
+  <InputLabel id="demo-simple-select-label-acc" sx={{p:2}}>Select Analytics Account</InputLabel>
   <Select
-    labelId="demo-simple-select-label"
+    labelId="demo-simple-select-label-acc"
     id="demo-simple-select"
     value={selanalytic}
     label="Select Page"
@@ -380,9 +414,9 @@ onRowsPerPageChange={(e)=>handlerowschange(e)}
 
 <Grid item xs={12}>
 <FormControl sx={{p:2,width:'100%'}} >
-  <InputLabel id="demo-simple-select-label" sx={{p:2}}>Select Property</InputLabel>
+  <InputLabel id="demo-simple-select-label-prop" sx={{p:2}}>Select Property</InputLabel>
   <Select
-    labelId="demo-simple-select-label"
+    labelId="demo-simple-select-label-prop"
     id="demo-simple-select"
     value={selprop}
     label="Select Page"
@@ -396,9 +430,28 @@ onRowsPerPageChange={(e)=>handlerowschange(e)}
 </FormControl>
 </Grid>
 
+
+<Grid item xs={12}>
+<FormControl sx={{p:2,width:'100%'}} >
+  <InputLabel id="demo-simple-select-label-console" sx={{p:2}}>Select Website URL</InputLabel>
+  <Select
+    labelId="demo-simple-select-label-console"
+    id="demo-simple-select"
+    value={selcon}
+    label="Select Page"
+    onChange={(e)=>setSelcon(e.target.value)}
+    sx={{m:1}}
+  >
+
+ {sclist} 
+
+  </Select>
+</FormControl>
+</Grid>
+
 <Grid item xs={12}>
 <FormControl sx={{p:2}} >
-<Button type="button" variant="contained" sx={{m:1}} onClick={saveProperty}>Add Campaign</Button>
+<Button type="button" variant="contained" sx={{m:1}} onClick={(e)=>saveProperty(e)}>Add Google Property</Button>
 </FormControl>
 
 </Grid>
@@ -408,6 +461,21 @@ onRowsPerPageChange={(e)=>handlerowschange(e)}
   </Box>
 
 </Modal>
+
+<Snackbar
+        anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+        open={snack} 
+        autoHideDuration={3000}
+        onClose={()=>setSnack(0)}
+      >
+ <Alert
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          Added Successfuly !
+        </Alert>
+      </Snackbar>
 
 </Box>
     )
