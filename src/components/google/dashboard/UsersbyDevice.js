@@ -5,16 +5,12 @@ import {
 } from "@mui/material";
 import PieChartDevice from "./PieChartDevice";
 
+const COLORS = ["#3b82f6", "#10b981", "#f59e0b","#6642ec","#f45684"];
 
-const deviceData = [
-  { name: "Desktop", value: 420, color: "#3b82f6" },
-  { name: "Mobile", value: 980, color: "#10b981" },
-  { name: "Tablet", value: 95, color: "#f59e0b" },
-];
+export default function UsersbyDevice({props}) {
 
-const total = deviceData.reduce((sum, item) => sum + item.value, 0);
+  const total = props?.reduce((sum, item) => sum + item.users, 0);
 
-export default function UsersbyDevice() {
   return (
     <Box
       sx={{
@@ -34,12 +30,12 @@ export default function UsersbyDevice() {
 
       <Grid container spacing={2} alignItems="center">
         <Grid xs={8}>
-       <PieChartDevice />
+       <PieChartDevice data={props} />
         </Grid>
         <Grid xs={4}>
-          {deviceData.map((item) => (
+          {props?.map((item,index) => (
             <Box
-              key={item.name}
+              key={item?.device}
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -59,15 +55,15 @@ export default function UsersbyDevice() {
                     width: 12,
                     height: 12,
                     borderRadius: "50%",
-                    bgcolor: item.color,
+                    bgcolor: COLORS[index],
                   }}
                 />
-                <Typography>{item.name}</Typography>
+                <Typography>{item?.device}</Typography>
               </Box>
 
-              <Typography fontWeight={600}>
-                {item.value} (
-                {((item.value / total) * 100).toFixed(1)}%)
+              <Typography fontWeight={500}>
+                {item?.users} (
+                {((item?.users / total) * 100).toFixed(1)}%)
               </Typography>
             </Box>
           ))}
@@ -81,12 +77,12 @@ export default function UsersbyDevice() {
               justifyContent: "space-between",
             }}
           >
-            <Typography fontWeight={600}>
+            <Typography fontWeight={500}>
               Total Users
             </Typography>
 
-            <Typography fontWeight={700}>
-              {total.toLocaleString()}
+            <Typography fontWeight={500}>
+              {total?.toLocaleString()}
             </Typography>
           </Box>
         </Grid>

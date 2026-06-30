@@ -18,7 +18,7 @@ const data = [
 
 const COLORS = ["#3b82f6", "#10b981", "#6642ec", "#f45684", "#f59e0b"];
 
-export default function PieChartTrafficSource() {
+export default function PieChartTrafficSource({data=[]}) {
   return (
     <div  style={{
     width: "100%",
@@ -27,13 +27,12 @@ export default function PieChartTrafficSource() {
     padding: 16,
   }}>
      
-
       <ResponsiveContainer style={{width:'100%',height:'100%'}} width="100%" height="100%">
         <PieChart>
           <Pie
             data={data}
-            dataKey="value"
-            nameKey="name"
+            dataKey="users"
+            nameKey="source"
             cx="50%"
             cy="50%"
             outerRadius={100}

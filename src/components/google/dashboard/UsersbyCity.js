@@ -15,7 +15,15 @@ import Paper from '@mui/material/Paper';
 import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 
-export default function UsersbyCity(){
+export default function UsersbyCity({props}){
+
+  const citylist=props?.map((itm)=><TableRow>
+            <TableCell>{itm.city}</TableCell>
+            <TableCell align="left">{itm.users}</TableCell>
+            <TableCell align="left">{itm.newUsers}</TableCell>
+            <TableCell align="left">{itm.screenPageViews} </TableCell>
+            <TableCell align="left">{itm.averageSessionDuration} </TableCell>
+          </TableRow>)
 
     return(
         <>
@@ -41,19 +49,15 @@ export default function UsersbyCity(){
             <TableCell>City</TableCell>
             <TableCell align="left">Users</TableCell>
             <TableCell align="left">New Users</TableCell>
-            <TableCell align="left">Eng. Sessions</TableCell>
+            <TableCell align="left">Page Views</TableCell>
             <TableCell align="left">Avg. Eng. Time</TableCell>
             
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>Pune</TableCell>
-            <TableCell align="left">1200 (60%)</TableCell>
-            <TableCell align="left">1100 (47%)</TableCell>
-            <TableCell align="left">645 </TableCell>
-            <TableCell align="left">2m 45s </TableCell>
-          </TableRow>
+
+          {citylist}
+
         </TableBody>
       </Table>
 

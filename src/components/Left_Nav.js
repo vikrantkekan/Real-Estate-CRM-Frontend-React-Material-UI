@@ -293,11 +293,15 @@ Projects
         <List component="div" disablePadding>
 
         <Link to="/CampaignList" >
-
           <ListItemButton sx={{ pl: 4 }}>
             <ListItemIcon><CircleIcon sx={{fontSize:7}}/></ListItemIcon><ListItemText primary="Campaigns" />
           </ListItemButton>
+        </Link>
 
+         <Link to="/google/dashboard/" >
+          <ListItemButton sx={{ pl: 4 }}>
+            <ListItemIcon><CircleIcon sx={{fontSize:7}}/></ListItemIcon><ListItemText primary="SEO Analytics" />
+          </ListItemButton>
         </Link>
 
               <Link to="/Instagram">

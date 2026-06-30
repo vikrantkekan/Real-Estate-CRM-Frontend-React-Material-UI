@@ -15,9 +15,12 @@ const deviceData = [
   { name: "Paid Search", value: 95, color: "#f59e0b" },
 ];
 
-const total = deviceData.reduce((sum, item) => sum + item.value, 0);
+const COLORS = ["#3b82f6", "#10b981", "#f59e0b","#6642ec","#f45684"];
 
-export default function TopTrafficSource() {
+export default function TopTrafficSource({props}) {
+
+  const total = props?.reduce((sum, item) => sum + item.users, 0);
+
   return (
     <Box
       sx={{
@@ -29,7 +32,7 @@ export default function TopTrafficSource() {
     >
       <Typography
         variant="h6"
-        fontWeight={600}
+        fontWeight={500}
         mb={2}
       >
         Top Traffic Source
@@ -37,12 +40,12 @@ export default function TopTrafficSource() {
       
       <Grid container spacing={2} alignItems="center">
         <Grid xs={8}>
-       <PieChartTrafficSource />
+       <PieChartTrafficSource data={props} />
         </Grid>
         <Grid xs={4}>
-          {deviceData.map((item) => (
+          {props?.map((item) => (
             <Box
-              key={item.name}
+              key={item.source}
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -62,15 +65,15 @@ export default function TopTrafficSource() {
                     width: 12,
                     height: 12,
                     borderRadius: "50%",
-                    bgcolor: item.color,
+                    bgcolor: COLORS[item],
                   }}
                 />
-                <Typography>{item.name}</Typography>
+                <Typography>{item.source}</Typography>
               </Box>
 
-              <Typography fontWeight={600}>
-                {item.value} (
-                {((item.value / total) * 100).toFixed(1)}%)
+              <Typography fontWeight={500}>
+                {item.users} (
+                {((item.users / total) * 100).toFixed(1)}%)
               </Typography>
             </Box>
           ))}
@@ -84,12 +87,12 @@ export default function TopTrafficSource() {
               justifyContent: "space-between",
             }}
           >
-            <Typography fontWeight={600}>
+            <Typography fontWeight={500}>
               Total Users
             </Typography>
 
-            <Typography fontWeight={700}>
-              {total.toLocaleString()}
+            <Typography fontWeight={500}>
+              {total?.toLocaleString()}
             </Typography>
           </Box>
         </Grid>

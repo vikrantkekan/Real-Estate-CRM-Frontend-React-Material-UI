@@ -5,10 +5,12 @@ import {
 } from "@mui/material";
 
 import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
-import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
-import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 
-export default function AvgPosition(){
+import Statcard from "./Statcard";
+
+export default function AvgPosition({props}){
+
+  const trend = props?.previous > props?.current ? "up" : "down";
 
     return(
         <>
@@ -63,34 +65,10 @@ export default function AvgPosition(){
         mt: 0.5,
       }}
     >
-      6.5
+      {props?.current}
     </Typography>
 
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        mt: 1,
-      }}
-    >
-      <ArrowUpwardOutlinedIcon
-        sx={{
-          color: "#2E7D32",
-          fontSize: 18,
-          mr: 0.5,
-        }}
-      />
-
-      <Typography
-        sx={{
-          color: "#2E7D32",
-          fontWeight: 600,
-        }}
-      >
-        12%
-      </Typography>
-
-    </Box>
+   <Statcard val={props?.change} trend={trend} />
      
       <Typography
         sx={{
@@ -99,7 +77,7 @@ export default function AvgPosition(){
           fontSize: 11,
         }}
       >
-        vs Apr 26 – May 26
+        vs Apr 26 – May 26 ({props?.previous})
       </Typography>
   </Box>
  

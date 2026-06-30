@@ -7,15 +7,15 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
+const data2 = [
   { name: "Desktop", value: 420 },
   { name: "Mobile", value: 980 },
   { name: "Tablet", value: 95 },
 ];
 
-const COLORS = ["#3b82f6", "#10b981", "#f59e0b"];
+const COLORS = ["#3b82f6", "#10b981", "#f59e0b","#6642ec","#f45684"];
 
-export default function PieChartDevice() {
+export default function PieChartDevice({data=[]}) {
   return (
     <div  style={{
     width: "100%",
@@ -29,8 +29,8 @@ export default function PieChartDevice() {
         <PieChart>
           <Pie
             data={data}
-            dataKey="value"
-            nameKey="name"
+            dataKey="users"
+            nameKey="device"
             cx="50%"
             cy="50%"
             outerRadius={100}

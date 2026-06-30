@@ -15,7 +15,16 @@ import Paper from '@mui/material/Paper';
 import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 
-export default function TopKeywords(){
+export default function TopKeywords({props}){
+
+
+    const keywordlist=props?.map((itm)=><TableRow>
+            <TableCell>{itm.keyword}</TableCell>
+            <TableCell align="left">{itm.impressions}</TableCell>
+             <TableCell align="left">{itm.clicks}</TableCell>
+            <TableCell align="left">{itm.ctr} </TableCell>
+            <TableCell align="left">{itm.position} </TableCell>
+          </TableRow>)
 
     return(
         <>
@@ -39,25 +48,14 @@ export default function TopKeywords(){
         <TableHead>
           <TableRow>
             <TableCell>Keyword</TableCell>
-            <TableCell align="left">Clicks</TableCell>
             <TableCell align="left">Impression</TableCell>
+            <TableCell align="left">Clicks</TableCell>
             <TableCell align="left">CTR</TableCell>
             <TableCell align="left">Position</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>Ellipsis digital</TableCell>
-            <TableCell align="left">1200</TableCell>
-            <TableCell align="left">12000</TableCell>
-            <TableCell align="left">  
-                <Box sx={{display: "flex",alignItems: "center",}}>
-      <ArrowUpwardOutlinedIcon sx={{color: "#2E7D32",fontSize: 14,mr: 0.5,}}/>
-<span style={{ color: "#2E7D32"}}>12%</span>
-    </Box>
-    </TableCell>
-            <TableCell align="left">6.4</TableCell>
-          </TableRow>
+          {keywordlist}
         </TableBody>
       </Table>
     

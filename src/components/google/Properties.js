@@ -1,8 +1,6 @@
 import { useEffect,useState } from "react";
 import {useCookies,withCookies} from 'react-cookie';
 
-
-
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Container from '@mui/material/Container'
@@ -228,7 +226,7 @@ if(data==200){
 
   useEffect(() => {
 
-fetch(`${process.env.REACT_APP_API_BASE_URL}//google/google-connections.php?client_id=${cookies.all.clie}`)
+fetch(`${process.env.REACT_APP_API_BASE_URL}/google/google-connections.php?client_id=${cookies.all.clie}`)
 .then((response)=>response.json())
 .then((data)=>{
   console.log(data)
@@ -237,7 +235,7 @@ fetch(`${process.env.REACT_APP_API_BASE_URL}//google/google-connections.php?clie
 .catch((err)=>console.log(err));
 
 
-fetch(`${process.env.REACT_APP_API_BASE_URL}//google/google-property.php?client_id=${cookies.all.clie}`)
+fetch(`${process.env.REACT_APP_API_BASE_URL}/google/google-property.php?client_id=${cookies.all.clie}`)
 .then((response)=>response.json())
 .then((data)=>{
   console.log(data)
@@ -401,7 +399,7 @@ onRowsPerPageChange={(e)=>handlerowschange(e)}
     labelId="demo-simple-select-label-acc"
     id="demo-simple-select"
     value={selanalytic}
-    label="Select Page"
+    label="Select Analytics Account"
     onChange={(e)=>handleAnalyticsChange(e)}
     sx={{m:1}}
   >
@@ -419,7 +417,7 @@ onRowsPerPageChange={(e)=>handlerowschange(e)}
     labelId="demo-simple-select-label-prop"
     id="demo-simple-select"
     value={selprop}
-    label="Select Page"
+    label="Select Property"
     onChange={(e)=>setSelprop(e.target.value)}
     sx={{m:1}}
   >
@@ -438,7 +436,7 @@ onRowsPerPageChange={(e)=>handlerowschange(e)}
     labelId="demo-simple-select-label-console"
     id="demo-simple-select"
     value={selcon}
-    label="Select Page"
+    label="Select Website"
     onChange={(e)=>setSelcon(e.target.value)}
     sx={{m:1}}
   >

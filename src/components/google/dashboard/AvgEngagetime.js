@@ -6,10 +6,11 @@ import {
 
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 
-import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
-import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
+import Statcard from "./Statcard";
 
-export default function AvgEngagetime(){
+export default function AvgEngagetime({props}){
+
+  const trend = props?.previous < props?.current ? "up" : "down";
 
     return(
         <>
@@ -64,34 +65,10 @@ export default function AvgEngagetime(){
         mt: 0.5,
       }}
     >
-      3.5 Min
+      {props?.current} 
     </Typography>
 
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        mt: 1,
-      }}
-    >
-      <ArrowUpwardOutlinedIcon
-        sx={{
-          color: "#2E7D32",
-          fontSize: 18,
-          mr: 0.5,
-        }}
-      />
-
-      <Typography
-        sx={{
-          color: "#2E7D32",
-          fontWeight: 600,
-        }}
-      >
-        12%
-      </Typography>
-
-    </Box>
+   <Statcard val={props?.change} trend={trend} />
      
       <Typography
         sx={{
@@ -100,7 +77,7 @@ export default function AvgEngagetime(){
           fontSize: 11,
         }}
       >
-        vs Apr 26 – May 26
+        vs Apr 26 – May 26 ({props?.previous})
       </Typography>
   </Box>
  

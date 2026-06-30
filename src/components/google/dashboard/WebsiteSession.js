@@ -6,10 +6,12 @@ import {
 
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
 
-import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
-import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 
-export default function WebsiteSession(){
+import Statcard from "./Statcard";
+
+
+export default function WebsiteSession({props}){
+ const trend = props?.previous < props?.current ? "up" : "down";
 
     return(
         <>
@@ -64,34 +66,10 @@ export default function WebsiteSession(){
         mt: 0.5,
       }}
     >
-      4,850
+      {props?.current}
     </Typography>
-
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        mt: 1,
-      }}
-    >
-      <ArrowUpwardOutlinedIcon
-        sx={{
-          color: "#2E7D32",
-          fontSize: 18,
-          mr: 0.5,
-        }}
-      />
-
-      <Typography
-        sx={{
-          color: "#2E7D32",
-          fontWeight: 600,
-        }}
-      >
-        12%
-      </Typography>
-
-    </Box>
+    
+<Statcard val={props?.change} trend={trend} />
      
       <Typography
         sx={{
@@ -100,7 +78,7 @@ export default function WebsiteSession(){
           fontSize: 11,
         }}
       >
-        vs Apr 26 – May 26
+        vs Apr 26 – May 26 ({props?.previous})
       </Typography>
   </Box>
  
